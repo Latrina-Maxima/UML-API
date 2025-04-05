@@ -1,1 +1,22 @@
-{{!-- Java template --}}
+{{#each classes}}
+        class {{name}} {{#if extends.length}}extend {{#each extends}}{{this}} {{/each}}{{/if}}
+        {
+        {{#each fields}}
+            {{#with this}}
+                {{access}} {{#if extraTypes.length}}{{#each extraTypes}}{{this}}{{#unless @last}} {{/unless}}{{/each}}{{/if}} {{type}} {{name}};
+            {{/with}}
+        {{/each}}
+
+        {{#each methods}}
+            {{#with this}}
+                {{access}} {{#if extraTypes.length}}{{#each extraTypes}}{{this}}{{#unless @last}} {{/unless}}{{/each}}{{/if}} {{type}} {{name}}({{#each parameters}}{{type}} {{name}}{{#unless @last}}, {{/unless}}{{/each}})
+                {
+
+                }
+            {{/with}}
+        {{/each}}
+        }
+{{/each}}
+
+
+
